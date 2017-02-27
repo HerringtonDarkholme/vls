@@ -22,7 +22,6 @@
     "vscode-uri": "^1.0.0"
   },
   "scripts": {
-    "prepublish": "npm run compile",
     "compile": "tsc -p ./src && cpy ./src/beautify/*.js ./lib/beautify",
     "watch": "cpy ./src/beautify/*.js ./lib/beautify && tsc -w -p ./src",
     "test": "npm run compile && mocha",

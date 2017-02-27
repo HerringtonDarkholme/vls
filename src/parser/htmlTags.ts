@@ -495,38 +495,26 @@ export function getHTML5TagProvider(): IHTMLTagProvider {
 
 export function getAngularTagProvider(): IHTMLTagProvider {
 	var customTags: { [tag: string]: string[] } = {
-		input: ['ng-model', 'ng-required', 'ng-minlength', 'ng-maxlength', 'ng-pattern', 'ng-trim'],
-		select: ['ng-model'],
-		textarea: ['ng-model', 'ng-required', 'ng-minlength', 'ng-maxlength', 'ng-pattern', 'ng-trim']
+		input: ['v-model', 'v-required', 'v-minlength', 'v-maxlength', 'v-pattern', 'v-trim'],
+		select: ['v-model'],
+		textarea: ['v-model', 'v-required', 'v-minlength', 'v-maxlength', 'v-pattern', 'v-trim']
 	};
 
-	var globalAttributes = ['ng-app', 'ng-bind', 'ng-bind-html', 'ng-bind-template', 'ng-blur', 'ng-change', 'ng-checked', 'ng-class', 'ng-class-even', 'ng-class-odd',
-		'ng-click', 'ng-cloak', 'ng-controller', 'ng-copy', 'ng-csp', 'ng-cut', 'ng-dblclick', 'ng-disabled', 'ng-focus', 'ng-form', 'ng-hide', 'ng-href', 'ng-if',
-		'ng-include', 'ng-init', 'ng-jq', 'ng-keydown', 'ng-keypress', 'ng-keyup', 'ng-list', 'ng-model-options', 'ng-mousedown', 'ng-mouseenter', 'ng-mouseleave',
-		'ng-mousemove', 'ng-mouseover', 'ng-mouseup', 'ng-non-bindable', 'ng-open', 'ng-options', 'ng-paste', 'ng-pluralize', 'ng-readonly', 'ng-repeat', 'ng-selected',
-		'ng-show', 'ng-src', 'ng-srcset', 'ng-style', 'ng-submit', 'ng-switch', 'ng-transclude', 'ng-value'
+	var globalAttributes = ['v-app', 'v-bind', 'v-bind-html', 'v-bind-template', 'v-blur', 'v-change', 'v-checked', 'v-class', 'v-class-even', 'v-class-odd',
+		'v-click', 'v-cloak', 'v-controller', 'v-copy', 'v-csp', 'v-cut', 'v-dblclick', 'v-disabled', 'v-focus', 'v-form', 'v-hide', 'v-href', 'v-if',
+		'v-include', 'v-init', 'v-jq', 'v-keydown', 'v-keypress', 'v-keyup', 'v-list', 'v-model-options', 'v-mousedown', 'v-mouseenter', 'v-mouseleave',
+		'v-mousemove', 'v-mouseover', 'v-mouseup', 'v-non-bindable', 'v-open', 'v-options', 'v-paste', 'v-pluralize', 'v-readonly', 'v-repeat', 'v-selected',
+		'v-show', 'v-src', 'v-srcset', 'v-style', 'v-submit', 'v-switch', 'v-transclude', 'v-value'
 	];
 
 	return {
 		getId: () => 'angular1',
-		isApplicable: (languageId) => languageId === 'html',
+		isApplicable: (languageId) => languageId === 'vue-html',
 		collectTags: (collector: (tag: string) => void) => {
 			// no extra tags
 		},
 		collectAttributes: (tag: string, collector: (attribute: string, type: string) => void) => {
-			if (tag) {
-				var attributes = customTags[tag];
-				if (attributes) {
-					attributes.forEach((a) => {
-						collector(a, null);
-						collector('data-' + a, null);
-					});
-				}
-			}
-			globalAttributes.forEach((a) => {
-				collector(a, null);
-				collector('data-' + a, null);
-			});
+			// no attrs
 		},
 		collectValues: (tag: string, attribute: string, collector: (value: string) => void) => {
 			// no values
