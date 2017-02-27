@@ -8,8 +8,8 @@ import {getHTML5TagProvider, getAngularTagProvider, getIonicTagProvider, IHTMLTa
 import {getRazorTagProvider} from '../parser/razorTags';
 
 export let allTagProviders : IHTMLTagProvider[] = [
-	getHTML5TagProvider(),
-	getAngularTagProvider(),
-	getIonicTagProvider(),
-	getRazorTagProvider()
+  getHTML5TagProvider(),
+  getAngularTagProvider(),
+  getIonicTagProvider(),
+  getRazorTagProvider()
 ];

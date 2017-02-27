@@ -94,7 +94,7 @@ export interface IBeautifyHTMLOptions {
 }
 
 export interface IBeautifyHTML {
-	(value:string, options:IBeautifyHTMLOptions): string;
+  (value:string, options:IBeautifyHTMLOptions): string;
 }
 
 export declare var html_beautify:IBeautifyHTML;

@@ -12,7 +12,7 @@ export interface IBeautifyCSSOptions {
 }
 
 export interface IBeautifyCSS {
-	(value:string, options:IBeautifyCSSOptions): string;
+  (value:string, options:IBeautifyCSSOptions): string;
 }
 
 export declare var css_beautify:IBeautifyCSS;
