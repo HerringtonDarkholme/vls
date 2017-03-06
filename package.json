@@ -25,7 +25,6 @@
     "prepublish": "npm run compile",
     "compile": "tsc -p ./src && cpy ./src/beautify/*.js ./lib/beautify",
     "watch": "cpy ./src/beautify/*.js ./lib/beautify && tsc -w -p ./src",
-    "test": "npm run compile && mocha",
     "install-types-next": "npm install vscode-languageserver-types@next -f -S"
   }
 }
