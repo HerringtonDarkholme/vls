@@ -49,7 +49,7 @@ export interface IHTMLTagProvider {
   getId(): string;
   isApplicable(languageId: string);
   collectTags(collector: (tag: string, label: string) => void): void;
-  collectAttributes(tag: string, collector: (attribute: string, type: string) => void): void;
+  collectAttributes(tag: string, collector: (attribute: string, type: string, documentation?: string) => void): void;
   collectValues(tag: string, attribute: string, collector: (value: string) => void): void;
 }
 
@@ -426,21 +426,15 @@ export function getHTML5TagProvider(): IHTMLTagProvider {
 import { vueDirectives } from './vueApi'
 
 export function getVueTagProvider(): IHTMLTagProvider {
-  var customTags: { [tag: string]: string[] } = {
-    input: ['v-model', 'v-required', 'v-minlength', 'v-maxlength', 'v-pattern', 'v-trim'],
-    select: ['v-model'],
-    textarea: ['v-model', 'v-required', 'v-minlength', 'v-maxlength', 'v-pattern', 'v-trim']
-  };
-
   return {
     getId: () => 'vue',
     isApplicable: (languageId) => languageId === 'vue-html',
     collectTags: (collector: (tag: string) => void) => {
       // no extra tags
     },
-    collectAttributes: (tag: string, collector: (attribute: string, type: string) => void) => {
+    collectAttributes: (tag: string, collector: (attribute: string, type: string, documentation: string) => void) => {
       vueDirectives.forEach((a) => {
-        collector(a, null);
+        collector(a.label, null, a.documentation);
       });
     },
     collectValues: (tag: string, attribute: string, collector: (value: string) => void) => {

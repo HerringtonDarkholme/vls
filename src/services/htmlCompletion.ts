@@ -122,16 +122,18 @@ export function doComplete(document: TextDocument, position: Position, htmlDocum
     let value = isFollowedBy(text, nameEnd, ScannerState.AfterAttributeName, TokenType.DelimiterAssign) ? '' : '="$1"';
     let tag = currentTag.toLowerCase();
     tagProviders.forEach(provider => {
-      provider.collectAttributes(tag, (attribute, type) => {
+      provider.collectAttributes(tag, (attribute, type, documentation) => {
         let codeSnippet = attribute;
         if (type !== 'v' && value.length) {
           codeSnippet = codeSnippet + value;
         }
+        let a: CompletionItem;
         result.items.push({
           label: attribute,
           kind: type === 'handler' ? CompletionItemKind.Function : CompletionItemKind.Value,
           textEdit: TextEdit.replace(range, codeSnippet),
-          insertTextFormat: InsertTextFormat.Snippet
+          insertTextFormat: InsertTextFormat.Snippet,
+          documentation
         });
       });
     });
