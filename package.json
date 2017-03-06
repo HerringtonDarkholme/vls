@@ -1,6 +1,6 @@
 {
   "name": "vetur-vls",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "vue language service",
   "main": "./lib/htmlLanguageService.js",
   "typings": "./lib/htmlLanguageService",
