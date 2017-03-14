@@ -25,14 +25,14 @@ suite('HTML Link Detection', () => {
 
   function testLinkCreation(modelUrl: string, tokenContent: string, expected: string): void {
     let document = TextDocument.create(modelUrl, 'html', 0, `<a href="${tokenContent}">`);
-    let ls = htmlLanguageService.getLanguageService();
+    let ls = htmlLanguageService.getVls();
     let links = ls.findDocumentLinks(document, getDocumentContext(modelUrl));
     assert.equal(links[0] && links[0].target, expected);
   }
 
   function testLinkDetection(value: string, expectedLinks: { offset: number, target: string; }[]): void {
     let document = TextDocument.create('test://test/test.html', 'html', 0, value);
-    let ls = htmlLanguageService.getLanguageService();
+    let ls = htmlLanguageService.getVls();
     let links = ls.findDocumentLinks(document, getDocumentContext(document.uri));
     assert.deepEqual(links.map(l => ({ offset: l.range.start.character, target: l.target })), expectedLinks);
   }

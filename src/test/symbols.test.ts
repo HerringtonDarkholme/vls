@@ -22,7 +22,7 @@ suite('HTML Symbols', () => {
     }
 
     let testSymbolsFor = function(value: string, expected: SymbolInformation[]) {
-        let ls = htmlLanguageService.getLanguageService();
+        let ls = htmlLanguageService.getVls();
     let document = TextDocument.create(TEST_URI, 'html', 0, value);
     let htmlDoc = ls.parseHTMLDocument(document);
         let symbols = ls.findDocumentSymbols(document, htmlDoc);

@@ -51,7 +51,7 @@ suite('HTML Completion', () => {
     let offset = value.indexOf('|');
     value = value.substr(0, offset) + value.substr(offset + 1);
 
-    let ls = htmlLanguageService.getLanguageService();
+    let ls = htmlLanguageService.getVls();
 
     let document = TextDocument.create('test://test/test.html', 'html', 0, value);
     let position = document.positionAt(offset);

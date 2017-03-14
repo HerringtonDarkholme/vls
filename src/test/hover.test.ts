@@ -19,7 +19,7 @@ suite('HTML Hover', () => {
     let document = TextDocument.create('test://test/test.html', 'html', 0, value);
 
     let position = document.positionAt(offset);
-    let ls = htmlLanguageService.getLanguageService();
+    let ls = htmlLanguageService.getVls();
     let htmlDoc = ls.parseHTMLDocument(document);
 
     let hover = ls.doHover(document, position, htmlDoc);

@@ -20,7 +20,7 @@ suite('HTML Highlighting', () => {
     let document = TextDocument.create('test://test/test.html', 'html', 0, value);
 
     let position = document.positionAt(offset);
-    let ls = htmlLanguageService.getLanguageService();
+    let ls = htmlLanguageService.getVls();
     let htmlDoc = ls.parseHTMLDocument(document);
 
     let highlights = ls.findDocumentHighlights(document, position, htmlDoc);
