@@ -1,4 +1,4 @@
-# vue language service
+# Vue language service
 
 Language service for vue. Used in [vetur](https://github.com/octref/vetur) for advanced IntelliSense, formatting and other language features.
 
