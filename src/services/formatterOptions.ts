@@ -7,7 +7,7 @@ const htmlOptions = {
   indent_scripts: 'keep', // [keep|separate|normal]
   indent_size: 2, // Indentation size
   indent_with_tabs: false,
-  max_preserve_newlines: 0, // Maximum number of line breaks to be preserved in one chunk (0 disables)
+  max_preserve_newlines: 1, // Maximum number of line breaks to be preserved in one chunk (0 disables)
   preserve_newlines: true, // Whether existing line breaks before elements should be preserved (only works before elements, not inside tags or for text)
   unformatted: ['a', 'span', 'img', 'code', 'pre', 'sub', 'sup', 'em', 'strong', 'b', 'i', 'u', 'strike', 'big', 'small', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'], // List of tags that should not be reformatted
   wrap_line_length: 0 // Lines should wrap at next opportunity after this number of characters (0 disables)
@@ -41,7 +41,7 @@ const jsOptions = {
   jslint_happy: false, // If true, then jslint-stricter mode is enforced
   keep_array_indentation: false, // Preserve array indentation
   keep_function_indentation: false, // Preserve function indentation
-  max_preserve_newlines: 0, // Maximum number of line breaks to be preserved in one chunk (0 disables)
+  max_preserve_newlines: 1, // Maximum number of line breaks to be preserved in one chunk (0 disables)
   preserve_newlines: true, // Whether existing line breaks should be preserved
   space_after_anon_function: false, // Should the space before an anonymous function's parens be added, 'function()' vs 'function ()'
   space_before_conditional: true, // Should the space before conditional statement be added, 'if(true)' vs 'if (true)'
