@@ -7,6 +7,7 @@
 import { TextDocument, Range, TextEdit, Position, FormattingOptions } from 'vscode-languageserver-types';
 import { html as htmlBeautify, css as cssBeautify, js as jsBeautify } from 'js-beautify';
 
+import { repeat } from '../utils/strings'
 import { htmlOptions, cssOptions } from './formatterOptions'
 
 export function htmlFormat(document: TextDocument, currRange: Range, formattingOptions: FormattingOptions): TextEdit[] {
@@ -15,7 +16,10 @@ export function htmlFormat(document: TextDocument, currRange: Range, formattingO
   htmlOptions.indent_with_tabs = !formattingOptions.insertSpaces;
   htmlOptions.indent_size = formattingOptions.tabSize;
 
-  const result = '\n' + htmlBeautify(value, htmlOptions) + '\n';
+  const beautifiedHtml: string = htmlBeautify(value, htmlOptions);
+  const initialIndent = generateIndent(1, formattingOptions);
+  const indentedHtml = ('\n' + beautifiedHtml).split('\n').join('\n' + initialIndent);
+  const result = indentedHtml + '\n';
   return [{
     range: range,
     newText: result
@@ -49,4 +53,12 @@ function getValueAndRange(document: TextDocument, currRange: Range): { value: st
     range = Range.create(Position.create(0, 0), document.positionAt(value.length));
   }
   return { value, range };
+}
+
+function generateIndent(level: number, options: FormattingOptions) {
+  if (options.insertSpaces) {
+    return repeat(' ', level * options.tabSize);
+  } else {
+    return repeat('\t', level);
+  }
 }
