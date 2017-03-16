@@ -6,6 +6,7 @@ const htmlOptions = {
   indent_inner_html: false, // Indent <head> and <body> sections
   indent_scripts: 'keep', // [keep|separate|normal]
   indent_size: 2, // Indentation size
+  indent_with_tabs: false,
   max_preserve_newlines: 0, // Maximum number of line breaks to be preserved in one chunk (0 disables)
   preserve_newlines: true, // Whether existing line breaks before elements should be preserved (only works before elements, not inside tags or for text)
   unformatted: ['a', 'span', 'img', 'code', 'pre', 'sub', 'sup', 'em', 'strong', 'b', 'i', 'u', 'strike', 'big', 'small', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'], // List of tags that should not be reformatted
@@ -16,6 +17,7 @@ const cssOptions = {
   end_with_newline: false, // End output with newline
   indent_char: ' ', // Indentation character
   indent_size: 2, // Indentation size
+  indent_with_tabs: false,
   newline_between_rules: true, // Add a new line after every css rule
   selector_separator: ' ',
   selector_separator_newline: true // Separate selectors with newline or not (e.g. 'a,\nbr' or 'a, br')

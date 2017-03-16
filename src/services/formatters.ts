@@ -4,13 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { TextDocument, Range, TextEdit, Position } from 'vscode-languageserver-types';
+import { TextDocument, Range, TextEdit, Position, FormattingOptions } from 'vscode-languageserver-types';
 import { html as htmlBeautify, css as cssBeautify, js as jsBeautify } from 'js-beautify';
 
 import { htmlOptions, cssOptions } from './formatterOptions'
 
-export function htmlFormat(document: TextDocument, currRange: Range): TextEdit[] {
+export function htmlFormat(document: TextDocument, currRange: Range, formattingOptions: FormattingOptions): TextEdit[] {
   const { value, range } = getValueAndRange(document, currRange);
+
+  htmlOptions.indent_with_tabs = !formattingOptions.insertSpaces;
+  htmlOptions.indent_size = formattingOptions.tabSize;
 
   const result = '\n' + htmlBeautify(value, htmlOptions) + '\n';
   return [{
@@ -19,8 +22,11 @@ export function htmlFormat(document: TextDocument, currRange: Range): TextEdit[]
   }];
 }
 
-export function cssFormat(document: TextDocument, currRange: Range): TextEdit[] {
+export function cssFormat(document: TextDocument, currRange: Range, formattingOptions: FormattingOptions): TextEdit[] {
   const { value, range } = getValueAndRange(document, currRange);
+
+  cssOptions.indent_with_tabs = !formattingOptions.insertSpaces;
+  cssOptions.indent_size = formattingOptions.tabSize;
 
   const result = '\n' + cssBeautify(value, cssOptions) + '\n';
   return [{

@@ -97,8 +97,8 @@ export interface Vls {
   findDocumentHighlights(document: TextDocument, position: Position, htmlDocument: HTMLDocument): DocumentHighlight[];
   doComplete(document: TextDocument, position: Position, htmlDocument: HTMLDocument, options?: CompletionConfiguration): CompletionList;
   doHover(document: TextDocument, position: Position, htmlDocument: HTMLDocument): Hover;
-  htmlFormat(document: TextDocument, range: Range): TextEdit[];
-  cssFormat(document: TextDocument, range: Range): TextEdit[];
+  htmlFormat(document: TextDocument, range: Range, formattingOptions: FormattingOptions): TextEdit[];
+  cssFormat(document: TextDocument, range: Range, formattingOptions: FormattingOptions): TextEdit[];
   findDocumentLinks(document: TextDocument, documentContext: DocumentContext): DocumentLink[];
   findDocumentSymbols(document: TextDocument, htmlDocument: HTMLDocument): SymbolInformation[];
 }
