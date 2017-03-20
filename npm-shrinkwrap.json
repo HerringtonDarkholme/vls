@@ -1,6 +1,6 @@
 {
   "name": "vetur-vls",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "dependencies": {
     "@types/mocha": {
       "version": "2.2.40",
