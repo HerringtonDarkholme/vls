@@ -2,6 +2,12 @@
   "name": "vetur-vls",
   "version": "0.2.5",
   "dependencies": {
+    "@types/lodash": {
+      "version": "4.14.62",
+      "from": "@types/lodash@latest",
+      "resolved": "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.62.tgz",
+      "dev": true
+    },
     "@types/mocha": {
       "version": "2.2.40",
       "from": "@types/mocha@>=2.2.33 <3.0.0",
@@ -295,6 +301,11 @@
       "from": "load-json-file@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/load-json-file/-/load-json-file-1.1.0.tgz",
       "dev": true
+    },
+    "lodash": {
+      "version": "4.17.4",
+      "from": "lodash@latest",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.4.tgz"
     },
     "loud-rejection": {
       "version": "1.6.0",

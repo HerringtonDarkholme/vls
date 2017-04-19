@@ -1,22 +1,22 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-'use strict';
-
 import { TextDocument, Range, TextEdit, Position, FormattingOptions } from 'vscode-languageserver-types';
 import { html as htmlBeautify, css as cssBeautify, js as jsBeautify } from 'js-beautify';
 
-import { repeat } from '../utils/strings'
-import { htmlOptions, cssOptions } from './formatterOptions'
+import { repeat } from '../utils/strings';
+import { defaultHtmlOptions, defaultCssOptions } from './formatterOptions';
+import * as _ from 'lodash';
 
 export function htmlFormat(document: TextDocument, currRange: Range, formattingOptions: FormattingOptions): TextEdit[] {
   const { value, range } = getValueAndRange(document, currRange);
 
-  htmlOptions.indent_with_tabs = !formattingOptions.insertSpaces;
-  htmlOptions.indent_size = formattingOptions.tabSize;
+  defaultHtmlOptions.indent_with_tabs = !formattingOptions.insertSpaces;
+  defaultHtmlOptions.indent_size = formattingOptions.tabSize;
 
-  const beautifiedHtml: string = htmlBeautify(value, htmlOptions);
+  let htmlFormattingOptions = defaultHtmlOptions;
+  if (formattingOptions.html) {
+    htmlFormattingOptions = _.assign(defaultHtmlOptions, formattingOptions.html);
+  }
+
+  const beautifiedHtml: string = htmlBeautify(value, htmlFormattingOptions);
   const initialIndent = generateIndent(1, formattingOptions);
   const indentedHtml = ('\n' + beautifiedHtml).replace(/\n/g, '\n' + initialIndent);
   const result = indentedHtml + '\n';
@@ -29,10 +29,15 @@ export function htmlFormat(document: TextDocument, currRange: Range, formattingO
 export function cssFormat(document: TextDocument, currRange: Range, formattingOptions: FormattingOptions): TextEdit[] {
   const { value, range } = getValueAndRange(document, currRange);
 
-  cssOptions.indent_with_tabs = !formattingOptions.insertSpaces;
-  cssOptions.indent_size = formattingOptions.tabSize;
+  defaultCssOptions.indent_with_tabs = !formattingOptions.insertSpaces;
+  defaultCssOptions.indent_size = formattingOptions.tabSize;
 
-  const result = '\n' + cssBeautify(value, cssOptions) + '\n';
+  let cssFormattingOptions = defaultCssOptions;
+  if (formattingOptions.css) {
+    cssFormattingOptions = _.assign(defaultCssOptions, formattingOptions.css);
+  }
+
+  const result = '\n' + cssBeautify(value, cssFormattingOptions) + '\n';
   return [{
     range: range,
     newText: result
