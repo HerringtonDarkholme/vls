@@ -1,12 +1,7 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-'use strict';
-
 import {createScanner} from './parser/htmlScanner';
 import {parse} from './parser/htmlParser';
 import {doComplete} from './services/htmlCompletion';
+import {doVueComplete} from './services/vueCompletion';
 import {doHover} from './services/htmlHover';
 import {htmlFormat, cssFormat} from './services/formatters';
 import {findDocumentLinks} from './services/htmlLinks';
@@ -96,6 +91,7 @@ export interface Vls {
   parseHTMLDocument(document: TextDocument): HTMLDocument;
   findDocumentHighlights(document: TextDocument, position: Position, htmlDocument: HTMLDocument): DocumentHighlight[];
   doComplete(document: TextDocument, position: Position, htmlDocument: HTMLDocument, options?: CompletionConfiguration): CompletionList;
+  doVueComplete(): CompletionList;
   doHover(document: TextDocument, position: Position, htmlDocument: HTMLDocument): Hover;
   htmlFormat(document: TextDocument, range: Range, formattingOptions: FormattingOptions): TextEdit[];
   cssFormat(document: TextDocument, range: Range, formattingOptions: FormattingOptions): TextEdit[];
@@ -108,6 +104,7 @@ export function getVls(): Vls {
     createScanner,
     parseHTMLDocument: document => parse(document.getText()),
     doComplete,
+    doVueComplete,
     doHover,
     htmlFormat,
     cssFormat,
