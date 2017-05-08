@@ -78,7 +78,7 @@ export default {
       insertTextFormat: InsertTextFormat.Snippet,
       insertText: 
 `<style>
-  \${}
+\${}
 </style>
 `
     },
@@ -89,7 +89,7 @@ export default {
       insertTextFormat: InsertTextFormat.Snippet,
       insertText: 
 `<style lang="scss">
-  \${}
+\${}
 </style>
 `
     },
@@ -100,7 +100,7 @@ export default {
       insertTextFormat: InsertTextFormat.Snippet,
       insertText: 
 `<style lang="less">
-  \${}
+\${}
 </style>
 `
     },
@@ -111,7 +111,7 @@ export default {
       insertTextFormat: InsertTextFormat.Snippet,
       insertText: 
 `<style lang="sass">
-  \${}
+\${}
 </style>
 `
     },
@@ -122,7 +122,7 @@ export default {
       insertTextFormat: InsertTextFormat.Snippet,
       insertText: 
 `<style lang="postcss">
-  \${}
+\${}
 </style>
 `
     },
@@ -133,7 +133,7 @@ export default {
       insertTextFormat: InsertTextFormat.Snippet,
       insertText: 
 `<style lang="stylus">
-  \${}
+\${}
 </style>
 `
     },
