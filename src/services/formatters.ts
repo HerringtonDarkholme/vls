@@ -1,5 +1,5 @@
 import { TextDocument, Range, TextEdit, Position, FormattingOptions } from 'vscode-languageserver-types';
-import { html as htmlBeautify, css as cssBeautify, js as jsBeautify } from 'js-beautify';
+import { html as htmlBeautify, css as cssBeautify } from 'js-beautify';
 
 import { repeat } from '../utils/strings';
 import { defaultHtmlOptions, defaultCssOptions } from './formatterOptions';
@@ -18,11 +18,10 @@ export function htmlFormat(document: TextDocument, currRange: Range, formattingO
 
   const beautifiedHtml: string = htmlBeautify(value, htmlFormattingOptions);
   const initialIndent = generateIndent(1, formattingOptions);
-  const indentedHtml = ('\n' + beautifiedHtml).replace(/\n/g, '\n' + initialIndent);
-  const result = indentedHtml + '\n';
+  const indentedHtml = ('\n' + beautifiedHtml).replace(/\n/g, '\n' + initialIndent) + '\n';
   return [{
     range: range,
-    newText: result
+    newText: indentedHtml
   }];
 }
 
@@ -37,11 +36,20 @@ export function cssFormat(document: TextDocument, currRange: Range, formattingOp
     cssFormattingOptions = _.assign(defaultCssOptions, formattingOptions.css);
   }
 
-  const result = '\n' + cssBeautify(value, cssFormattingOptions) + '\n';
-  return [{
-    range: range,
-    newText: result
-  }];
+  const beautifiedCss: string = cssBeautify(value, cssFormattingOptions);
+  if (formattingOptions.styleInitialIndent) {
+    const initialIndent = generateIndent(1, formattingOptions);
+    const indentedCss = ('\n' + beautifiedCss).replace(/\n/g, '\n' + initialIndent) + '\n';
+    return [{
+      range: range,
+      newText: indentedCss
+    }];
+  } else {
+    return [{
+      range: range,
+      newText: '\n' + beautifiedCss + '\n'
+    }];
+  }
 }
 
 function getValueAndRange(document: TextDocument, currRange: Range): { value: string, range: Range } {

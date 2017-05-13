@@ -1,13 +1,5 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-'use strict';
-
 import { TokenType, createScanner } from '../parser/htmlScanner';
 import { TextDocument, Range } from 'vscode-languageserver-types';
-import * as paths from '../utils/paths';
-import * as strings from '../utils/strings';
 import Uri from 'vscode-uri';
 
 import { DocumentLink, DocumentContext } from '../htmlLanguageService';

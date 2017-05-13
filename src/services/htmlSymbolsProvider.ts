@@ -1,12 +1,5 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-'use strict';
-
-import {TextDocument, Position, Location, Range, SymbolInformation, SymbolKind} from 'vscode-languageserver-types';
+import {TextDocument, Location, Range, SymbolInformation, SymbolKind} from 'vscode-languageserver-types';
 import {HTMLDocument, Node} from '../parser/htmlParser';
-import {TokenType, createScanner, ScannerState} from '../parser/htmlScanner';
 
 export function findDocumentSymbols(document: TextDocument, htmlDocument: HTMLDocument): SymbolInformation[] {
   let symbols = <SymbolInformation[]>[];

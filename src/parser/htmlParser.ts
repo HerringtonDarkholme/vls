@@ -1,9 +1,3 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-'use strict';
-
 import { TokenType, createScanner } from './htmlScanner';
 import { findFirst } from '../utils/arrays';
 import { isEmptyElement } from './htmlTags';
@@ -112,7 +106,7 @@ export function parse(text: string): HTMLDocument {
         }
         break;
       case TokenType.AttributeName:
-        let attributeName = pendingAttribute = scanner.getTokenText();
+        pendingAttribute = scanner.getTokenText();
         let attributes = curr.attributes;
         if (!attributes) {
           curr.attributes = attributes = {};
